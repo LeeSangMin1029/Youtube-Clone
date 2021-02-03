@@ -1,0 +1,13 @@
+mixin navbar()
+  #navbar
+    #left
+      #menu: img(src="static/images/header-menu.png" alt="메뉴 버튼")
+      #logo-container
+        a(href="/" id="logo" title="JJabtube 홈")
+          #logo: img(src="static/images/youtube-logo.svg" alt="유튜브 로고")
+    #center
+      #search-container
+        form#search-form(action="/results")
+          #search-input
+            input#search(type="text" name="search_query" placeholder="검색")
+    #right info
