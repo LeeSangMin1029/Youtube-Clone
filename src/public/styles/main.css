@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background-color: black; */
+}
+
+#navbar {
+  top: 0;
+  width: 100%;
+  height: 56px;
+  padding: 0px 16px 0px 16px;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  overflow: hidden;
+  opacity: 0.95;
+}
+
+#center {
+  display: flex;
+  flex: 0 1 700px;
+  min-width: 0px;
+}
+
+#search-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+#search-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 2px 0 0 2px;
+  box-shadow: inset 0 1px 2px #eee;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+#search-input:focus-within {
+  border: 1px solid #f44336;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 35%);
+}
+
+#search {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  outline: none;
+}
+
+#contents {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  background-color: #f7f7f7;
+}
+
+#left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#content {
+  height: 100px;
+  width: 400px;
+}
+
+#menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu img {
+  padding: 8px;
+  margin: 0px 16px 0px 0px;
+}
+
+#menu img:hover {
+  cursor: pointer;
+}
+
+#logo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo {
+  width: 80px;
+  height: 24px;
+}
