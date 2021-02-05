@@ -17,6 +17,9 @@
     "googleapis": "^67.0.0",
     "mongoose": "^5.11.14",
     "nodemon": "^2.0.7",
+    "sharp": "^0.27.1"
+  },
+  "devDependencies": {
     "pug": "^3.0.0"
   }
 }
