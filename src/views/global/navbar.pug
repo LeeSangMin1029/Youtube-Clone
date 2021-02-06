@@ -11,8 +11,8 @@ mixin navbar()
       #search-container
         form#search-form(action="/results")
           #search-input
-            input#search(type="text" name="search_query" placeholder="검색")
-            label(for="search")
+            label(for="search" hidden)
+            input(id="search" type="text" name="search" placeholder="검색" autocomplete="off")
     #right
       #buttons
         +buttonBox("video_camera.png", "동영상 업로드")
