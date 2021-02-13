@@ -2,22 +2,21 @@ include ../global/util.pug
 
 mixin guideMenu()
   nav#guide-menu
-    #guide-sections
-      +guideSection(
-        [
-          {href:'/', string: '홈'},
-          {href:'/trend', string:'인기'},
-          {href:'/subscription', string:'구독'}
-        ]
-      )
-      +guideSection(
-        [
-          {href:'/library', string:'보관함'},
-          {href:'/history', string:'시청 기록'},
-          {href:'/studio', string:'내 동영상'},
-          {href:'/playlist', string:'나중에 볼 동영상'}
-        ]
-      )
+    +guideSection(
+      [
+        {href:'/', string: '홈'},
+        {href:'/trend', string:'인기'},
+        {href:'/subscription', string:'구독'}
+      ]
+    )
+    +guideSection(
+      [
+        {href:'/library', string:'보관함'},
+        {href:'/history', string:'시청 기록'},
+        {href:'/studio', string:'내 동영상'},
+        {href:'/playlist', string:'나중에 볼 동영상'}
+      ]
+    )
     div#footer
       p 
         | © 2021 Home
