@@ -1,3 +1,6 @@
+import path from 'path';
+import config from '../config';
+
 const ash = (asyncFn) => {
   return async (req, res, next) => {
     try {
@@ -7,5 +10,6 @@ const ash = (asyncFn) => {
     }
   };
 };
+const joinDir = (addPath) => path.join(config.__dirname, addPath);
 
-export { ash };
+export { ash, joinDir };
