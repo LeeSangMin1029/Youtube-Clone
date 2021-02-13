@@ -1,0 +1,39 @@
+include ../global/util.pug
+
+mixin guideMenu()
+  nav#guide-menu
+    #guide-sections
+      +guideSection(
+        [
+          {href:'/', string: '홈'},
+          {href:'/trend', string:'인기'},
+          {href:'/subscription', string:'구독'}
+        ]
+      )
+      +guideSection(
+        [
+          {href:'/library', string:'보관함'},
+          {href:'/history', string:'시청 기록'},
+          {href:'/studio', string:'내 동영상'},
+          {href:'/playlist', string:'나중에 볼 동영상'}
+        ]
+      )
+    div#footer
+      p 
+        | © 2021 Home
+        br
+        | 개발자: 이상민
+        br
+        | 주소: 서울특별시 서초구
+        br
+        | 전화: 010-9***-****
+
+
+mixin guideSection(arr)
+  #guide-section
+    each obj in arr
+      +anchorItem(obj.href, obj.string)
+
+
+mixin anchorItem(href, string)
+  a#endpoint(href=href title=string).guide-item= string
