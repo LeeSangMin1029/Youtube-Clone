@@ -1,12 +1,13 @@
+include ../global/util.pug
+
 mixin navbar()
   #navbar
     #left
       #menu
-        +buttonBox("header_menu.png", "메뉴 버튼")
+        +buttonWrap("header_menu.png", "메뉴 버튼")
       #logo-container
-        a(href="/" title="JJabtube 홈")
-          #logo
-            img(src="static/images/youtube_logo.svg" width="80" height="24" alt="유튜브 로고")
+        a#logo(href="/" title="JJabtube 홈")
+          +imgWrap('youtube_logo.svg', '짭튜브 로고', 80, 24)
     #center
       #search-container
         form#search-form(action="/results")
@@ -15,12 +16,10 @@ mixin navbar()
             input(id="search" type="text" name="search" placeholder="검색" autocomplete="off")
     #right
       #buttons
-        +buttonBox("video_camera.png", "동영상 업로드")
-        +buttonBox("alarm.png", "동영상 알림")
-        +buttonBox("user.png", "내 정보")
+        +buttonWrap("video_camera.png", "동영상 업로드")
+        +buttonWrap("alarm.png", "동영상 알림")
+        +buttonWrap("user.png", "내 정보")&attributes({'end': ''})
 
-mixin buttonBox(imgSrc, alt)
-  #button-box
-    #button
-      button: img(src=`static/images/${imgSrc}` width="24" height="24" alt=alt)
-    #ripple
+mixin buttonWrap(imgSrc, alt, className)
+  button#button(class=className)&attributes(attributes)
+    +imgWrap(imgSrc, alt)
