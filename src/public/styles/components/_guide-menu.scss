@@ -1,0 +1,24 @@
+#guide-menu {
+  position: fixed;
+  top: 0;
+  width: $menu-width;
+  margin-top: $menu-height;
+  background: #fff;
+}
+
+#guide-section {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;
+}
+
+.guide-item {
+  @include display-content(flex-start);
+  height: 40px;
+  padding: 0 24px;
+}
+
+#footer {
+  padding: 16px 24px;
+  color: #909090;
+  font-size: 13px;
+}

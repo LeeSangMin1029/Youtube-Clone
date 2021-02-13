@@ -1,0 +1,76 @@
+#navbar {
+  @include display-content(space-between);
+  position: fixed;
+  top: 0;
+  padding: 0px 16px 0px 16px;
+  width: 100%;
+  height: $menu-height;
+  background: #ffffff;
+  overflow: hidden;
+  opacity: 0.95;
+  #left {
+    @include display-content;
+    #menu {
+      @include display-content;
+      margin-right: 14px;
+    }
+    #logo-container {
+      @include display-content(flex-start);
+      width: 120px;
+      #logo {
+        width: 80px;
+        height: 24px;
+      }
+    }
+  }
+  #center {
+    display: flex;
+    flex: 0 1 700px;
+    min-width: 0px;
+    #search-container {
+      @include display-content;
+      flex: 1;
+      margin-left: 40px;
+      width: 100%;
+      #search-form {
+        @include display-content;
+        flex: 1;
+        #search-input {
+          @include display-content;
+          flex: 1;
+          border: 1px solid #ccc;
+          border-radius: 2px 0 0 2px;
+          box-shadow: inset 0 1px 2px #eee;
+          padding: 6px 8px;
+          font-size: 16px;
+          line-height: 24px;
+          &:focus-within {
+            border: 1px solid #f44336;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+          }
+          #search {
+            border: none;
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+  #right {
+    @include display-content(flex-end);
+    min-width: 200px;
+    #buttons {
+      @include display-content(space-between);
+      @include keyframe(materialRipple);
+      #button {
+        margin-right: 14px;
+        &[end] {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+#button {
+  @include display-content;
+  border: none;
+  user-select: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  padding: 8px;
+  position: relative;
+  & .animate {
+    position: absolute;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    pointer-events: none;
+    animation: materialRipple 0.2s ease-out;
+  }
+}

@@ -1,0 +1,25 @@
+@mixin display-content($content: center) {
+  display: flex;
+  justify-content: $content;
+  align-items: center;
+  flex-direction: row;
+}
+
+@mixin reset() {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@mixin keyframe($name) {
+  @keyframes #{$name} {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) scale(10);
+      opacity: 0;
+    }
+  }
+}
