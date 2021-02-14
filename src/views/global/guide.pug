@@ -1,7 +1,7 @@
 include ../global/util.pug
 
 mixin guideMenu()
-  nav#guide-menu
+  nav#guide-menu()&attributes({'opened': ''})
     +guideSection(
       [
         {href:'/',  string: '홈', imgSrc:'home.svg'},

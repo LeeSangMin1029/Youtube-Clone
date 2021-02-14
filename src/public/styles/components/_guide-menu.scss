@@ -1,9 +1,16 @@
 #guide-menu {
-  position: fixed;
-  top: 0;
-  width: $menu-width;
-  margin-top: $menu-height;
-  background: #fff;
+  &[opened] {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: $menu-width;
+    height: 100vh;
+    margin-top: $menu-height;
+    background: #fff;
+  }
+  & {
+    display: none;
+  }
 }
 
 #guide-section {
