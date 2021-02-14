@@ -15,6 +15,14 @@
   @include display-content(flex-start);
   height: 40px;
   padding: 0 24px;
+  title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+  img {
+    margin-right: 18px;
+  }
 }
 
 #footer {
