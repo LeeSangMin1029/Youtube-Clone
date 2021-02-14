@@ -1,8 +1,12 @@
 const path = document.location.href;
 
+const menuToggle = function (guideMenu) {
+  guideMenu.toggleAttribute('opened');
+};
+
 const btns = document.querySelectorAll('#button');
 btns.forEach((btn) => {
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', function () {
     const ripple = document.createElement('div');
     btn.append(ripple);
     ripple.className = 'animate';
@@ -18,4 +22,10 @@ guideAnchor.forEach((a) => {
   if (a.href === path) {
     a.setAttribute('active', '');
   }
+});
+
+const menuBtn = document.querySelector('#menu button');
+const guideMenu = document.querySelector('#guide-menu');
+menuBtn.addEventListener('click', () => {
+  menuToggle(guideMenu);
 });
