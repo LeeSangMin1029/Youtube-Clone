@@ -4,17 +4,17 @@ mixin guideMenu()
   nav#guide-menu
     +guideSection(
       [
-        {href:'/', string: '홈'},
-        {href:'/trend', string:'인기'},
-        {href:'/subscription', string:'구독'}
+        {href:'/',  string: '홈', imgSrc:'home.svg'},
+        {href:'/trend', string:'인기', imgSrc:'trend.svg'},
+        {href:'/subscription', string:'구독', imgSrc:'subscription.svg'}
       ]
     )
     +guideSection(
       [
-        {href:'/library', string:'보관함'},
-        {href:'/history', string:'시청 기록'},
-        {href:'/studio', string:'내 동영상'},
-        {href:'/playlist', string:'나중에 볼 동영상'}
+        {href:'/library', string:'보관함', imgSrc: 'library.svg'},
+        {href:'/history', string:'시청 기록', imgSrc: 'view-record.svg'},
+        {href:'/studio', string:'내 동영상', imgSrc: 'personal.svg'},
+        {href:'/playlist', string:'나중에 볼 동영상', imgSrc:'watch-later.svg'}
       ]
     )
     div#footer
@@ -31,8 +31,10 @@ mixin guideMenu()
 mixin guideSection(arr)
   #guide-section
     each obj in arr
-      +anchorItem(obj.href, obj.string)
+      +anchorItem(obj.href, obj.string, obj.imgSrc)
 
 
-mixin anchorItem(href, string)
-  a#endpoint(href=href title=string).guide-item= string
+mixin anchorItem(href, string, imgSrc)
+  a#endpoint(href=href title=string).guide-item
+    +imgWrap(imgSrc, string, 18, 18)
+    .title= string
