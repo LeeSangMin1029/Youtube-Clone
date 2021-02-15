@@ -19,14 +19,10 @@ export default {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(config.__dirname, 'public'),
-    port: 8000,
-    hot: true,
+    port: 3000,
     lazy: true,
     publicPath: '/static/',
     filename: 'build.js',
-    proxy: {
-      '/': 'http://localhost:3000',
-    },
     overlay: true,
     open: true,
   },
