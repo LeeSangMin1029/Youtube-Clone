@@ -35,6 +35,6 @@ mixin guideSection(arr)
 
 
 mixin anchorItem(href, string, imgSrc)
-  a#endpoint(href=href title=string).guide-item
+  a.guide-item.endpoint(href=href title=string)
     +imgWrap(imgSrc, string, 18, 18)
     .title= string
