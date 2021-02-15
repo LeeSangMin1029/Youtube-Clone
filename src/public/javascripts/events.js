@@ -4,7 +4,7 @@ const menuToggle = function (guideMenu) {
   guideMenu.toggleAttribute('opened');
 };
 
-const btns = document.querySelectorAll('#button');
+const btns = document.querySelectorAll('.button-icon');
 btns.forEach((btn) => {
   btn.addEventListener('click', function () {
     const ripple = document.createElement('div');
