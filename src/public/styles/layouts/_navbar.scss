@@ -65,12 +65,6 @@
     #buttons {
       @include display-content(space-between);
       @include keyframe(materialRipple);
-      #button {
-        margin-right: 14px;
-        &[end] {
-          margin: 0;
-        }
-      }
     }
   }
 }
