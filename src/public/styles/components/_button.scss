@@ -15,4 +15,8 @@
     pointer-events: none;
     animation: materialRipple 0.2s ease-out;
   }
+
+  &.mr {
+    margin-right: $mr-14;
+  }
 }

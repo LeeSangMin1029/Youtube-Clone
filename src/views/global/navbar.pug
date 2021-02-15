@@ -4,7 +4,7 @@ mixin navbar()
   #navbar
     #left
       #menu
-        +buttonWrap("header_menu.png", "메뉴 버튼")
+        +buttonWrap("header_menu.png", "메뉴 버튼", "mr")
       #logo-container
         a#logo(href="/" title="JJabtube 홈")
           +imgWrap('youtube_logo.svg', '짭튜브 로고', 80, 24)
@@ -16,9 +16,9 @@ mixin navbar()
             input(id="search" type="text" name="search" placeholder="검색" autocomplete="off")
     #right
       #buttons
-        +buttonWrap("video_camera.png", "동영상 업로드")
-        +buttonWrap("alarm.png", "동영상 알림")
-        +buttonWrap("user.png", "내 정보")&attributes({'end': ''})
+        +buttonWrap("video_camera.png", "동영상 업로드", "mr")
+        +buttonWrap("alarm.png", "동영상 알림", "mr")
+        +buttonWrap("user.png", "내 정보")
 
 mixin buttonWrap(imgSrc, alt, className)
   button.button-icon(class=className)&attributes(attributes)

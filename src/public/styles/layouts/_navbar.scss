@@ -12,7 +12,9 @@
     @include display-content;
     #menu {
       @include display-content;
-      margin-right: 14px;
+      &.mr {
+        margin-right: $mr-14;
+      }
     }
     #logo-container {
       @include display-content(flex-start);
