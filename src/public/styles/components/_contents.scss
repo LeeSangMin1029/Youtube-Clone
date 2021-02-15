@@ -15,24 +15,3 @@
   width: 400px;
   height: 100px;
 }
-
-#endpoint {
-  color: black;
-  font-size: 14px;
-  text-decoration: none;
-  &:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-  &:active {
-    background: rgba(0, 0, 0, 0.15);
-  }
-  &[active] {
-    background: rgba(0, 0, 0, 0.1);
-  }
-  &[active]:hover {
-    background: rgba(0, 0, 0, 0.15);
-  }
-  &[active]:active {
-    background: rgba(0, 0, 0, 0.2);
-  }
-}
