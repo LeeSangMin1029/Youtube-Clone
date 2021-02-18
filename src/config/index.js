@@ -17,4 +17,5 @@ export default {
   youtube_api_key: process.env.YOUTUBE_API_KEYS,
   client_id: process.env.CLIENT_ID,
   client_secret: process.env.CLIENT_SECRET,
+  cookie_key: process.env.COOKIE_KEY,
 };
