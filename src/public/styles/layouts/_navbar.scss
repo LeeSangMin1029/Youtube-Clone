@@ -68,5 +68,20 @@
       @include display-content(space-between);
       @include keyframe(materialRipple);
     }
+    #login-container {
+      @include display-content(center);
+      border: 1px solid #f44336;
+      #login {
+        @include display-content(space-between);
+        text-decoration: none;
+        padding: 8px 12px 8px 12px;
+      }
+      & p {
+        user-select: none;
+        font-size: 14px;
+        padding-left: 6px;
+        color: #f44336;
+      }
+    }
   }
 }
