@@ -12,4 +12,12 @@ const ash = (asyncFn) => {
 };
 const joinDir = (addPath) => path.join(config.__dirname, addPath);
 
-export { ash, joinDir };
+const isLoggedIn = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.sendStatus(401);
+  }
+};
+
+export { ash, joinDir, isLoggedIn };
