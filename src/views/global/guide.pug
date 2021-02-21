@@ -27,12 +27,10 @@ mixin guideMenu()
         br
         | 전화: 010-9***-****
 
-
 mixin guideSection(arr)
   #guide-section
     each obj in arr
       +anchorItem(obj.href, obj.string, obj.imgSrc)
-
 
 mixin anchorItem(href, string, imgSrc)
   a.guide-item.endpoint(href=href title=string)

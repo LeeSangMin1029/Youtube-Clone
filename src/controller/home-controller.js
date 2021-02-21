@@ -1,6 +1,6 @@
 import { ash } from '../util';
 
-const home = ash(async (req, res) => {
+const renderMain = ash(async (req, res) => {
   try {
     return res.render('home/main');
   } catch (err) {
@@ -8,4 +8,4 @@ const home = ash(async (req, res) => {
   }
 });
 
-export { home };
+export { renderMain };

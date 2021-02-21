@@ -13,10 +13,13 @@ const {
   CLIENT_SECRET: client_secret = '',
   COOKIE_KEY: cookie_key = '',
   PORT: port = 3000,
+  DOMAIN: domain = 'http://localhost',
 } = process.env;
 
 export default {
+  domain,
   port: parseInt(port, 10),
+  base: `${domain}:${port}`,
   __dirname: dirname(fileURLToPath(import.meta.url)).replace(
     'src\\config',
     'src'

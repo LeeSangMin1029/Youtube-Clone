@@ -6,10 +6,11 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import cors from 'cors';
 
 import '../config/passport';
+import webpackConfig from '../../webpack.config';
 import config from '../config';
 import { joinDir } from '../util';
 import home from '../routes/home';
-import webpackConfig from '../../webpack.config';
+import auth from '../routes/auth';
 
 export default (app) => {
   const compiler = webpack(webpackConfig);
@@ -29,10 +30,16 @@ export default (app) => {
       keys: [config.cookie_key],
     })
   );
+  app.use('/static', express.static(joinDir('public')));
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use('/static', express.static(joinDir('public')));
+  app.use(function (req, res, next) {
+    res.locals.isAuthenticated = req.isAuthenticated();
+    res.locals.currentUser = req.user;
+    next();
+  });
   // routes
   app.use('/', home);
+  app.use('/auth', auth);
   /// error handlers
 };

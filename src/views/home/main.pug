@@ -1,11 +1,9 @@
 extends ../global/layout.pug
 include ../global/navbar.pug
 include ../global/guide.pug
+include ../global/content.pug
 
 block content
   +navbar()
   +guideMenu()
-  #contents
-    #videos
-      each val in [1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5]
-        #video=val
+  +content()
