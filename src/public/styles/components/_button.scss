@@ -5,7 +5,6 @@
   background: transparent;
   cursor: pointer;
   outline: none;
-  padding: 8px;
   position: relative;
   & .animate {
     position: absolute;
@@ -18,5 +17,8 @@
 
   &.mr {
     margin-right: $mr-14;
+  }
+  &.apd {
+    padding: $all-p;
   }
 }
