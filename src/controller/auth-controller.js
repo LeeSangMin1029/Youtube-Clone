@@ -1,11 +1,19 @@
 import { ash } from '../util';
+import { setToken } from '../services/youtube-api';
+import { authorizeURL } from '../services/youtube-api';
 
-const getAccessToken = ash(async (req, res) => {
+const authenticate = ash(async (req, res) => {
   try {
-    return res.send('test');
+    const { code } = req.query;
+    await setToken(code);
+    return res.redirect('/');
   } catch (err) {
     throw new Error(err);
   }
 });
 
-export { getAccessToken };
+const redirectAuthURL = ash(async (_, res) => {
+  return res.redirect(authorizeURL);
+});
+
+export { authenticate, redirectAuthURL };

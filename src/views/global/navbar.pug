@@ -22,7 +22,7 @@ mixin navbar()
           +buttonWrap("user.png", "내 정보", { id:"avatar" })
       - else
         #login-container
-          a#login(href="/")
+          a#login(href="/auth/google")
             +imgWrap("non-user.svg", "로그인")
             p 로그인
 
