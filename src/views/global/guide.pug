@@ -4,19 +4,20 @@ mixin guideMenu()
   nav#guide-menu()&attributes({'opened': ''})
     +guideSection(
       [
-        {href:'/',  string: '홈', imgSrc:'home.svg'},
-        {href:'/trend', string:'인기', imgSrc:'trend.svg'},
-        {href:'/subscription', string:'구독', imgSrc:'subscription.svg'}
+        {href:'/',  string: '홈', imgSrc:`${imgSrc}home.svg`},
+        {href:'/trend', string:'인기', imgSrc:`${imgSrc}trend.svg`},
+        {href:'/subscription', string:'구독', imgSrc:`${imgSrc}subscription.svg`}
       ]
     )
     +guideSection(
       [
-        {href:'/library', string:'보관함', imgSrc: 'library.svg'},
-        {href:'/history', string:'시청 기록', imgSrc: 'view-record.svg'},
-        {href:'/studio', string:'내 동영상', imgSrc: 'personal.svg'},
-        {href:'/playlist', string:'나중에 볼 동영상', imgSrc:'watch-later.svg'}
+        {href:'/library', string:'보관함', imgSrc: `${imgSrc}library.svg`},
+        {href:'/history', string:'시청 기록', imgSrc: `${imgSrc}view-record.svg`},
+        {href:'/studio', string:'내 동영상', imgSrc: `${imgSrc}personal.svg`},
+        {href:'/playlist', string:'나중에 볼 동영상', imgSrc:`${imgSrc}watch-later.svg`}
       ]
     )
+    +guideSection(subscribed)
     div#footer
       p 
         | © 2021 Home
