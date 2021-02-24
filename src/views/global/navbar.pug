@@ -7,7 +7,7 @@ mixin navbar()
         +buttonWrap("header_menu.png", "메뉴 버튼", { className: "mr apd" })
       #logo-container
         a#logo(href="/" title="JJabtube 홈")
-          +imgWrap('youtube_logo.svg', '짭튜브 로고', 80, 24)
+          +imgWrap(`${imgSrc}youtube_logo.svg`, '짭튜브 로고', 80, 24)
     #center
       #search-container
         form#search-form(action="/results")
@@ -17,13 +17,13 @@ mixin navbar()
     #right
       - if(isAuthenticated)
         #buttons
-          +buttonWrap("video_camera.png", "동영상 업로드", { className: "mr apd" })
-          +buttonWrap("alarm.png", "동영상 알림", { className: "mr apd" })
-          +buttonWrap("user.png", "내 정보", { className: "apd", id:"avatar" })
+          +buttonWrap(`${imgSrc}video_camera.png`, "동영상 업로드", { className: "mr apd" })
+          +buttonWrap(`${imgSrc}alarm.png`, "동영상 알림", { className: "mr apd" })
+          +buttonWrap(`${imgSrc}user.png`, "내 정보", { className: "apd", id:"avatar" })
       - else
         #login-container
           a#login(href="/auth/google")
-            +imgWrap("non-user.svg", "로그인")
+            +imgWrap(`${imgSrc}non-user.svg`, "로그인")
             p 로그인
 
 mixin buttonWrap(imgSrc, alt, { className, id }={})
