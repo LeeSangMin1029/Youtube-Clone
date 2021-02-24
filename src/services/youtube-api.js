@@ -8,10 +8,6 @@ const oauth2Client = new google.auth.OAuth2(
   `${config.base}/auth/google/code`
 );
 
-google.options({
-  auth: oauth2Client,
-});
-
 const scopes = [
   'https://www.googleapis.com/auth/youtube',
   'https://www.googleapis.com/auth/youtube.force-ssl',
@@ -24,6 +20,7 @@ let refreshToken = null;
 const authorizeURL = oauth2Client.generateAuthUrl({
   access_type: 'offline',
   scope: scopes,
+  prompt: 'consent',
 });
 
 const setToken = async (code) => {
@@ -38,13 +35,12 @@ const setToken = async (code) => {
   oauth2Client.credentials = tokens;
 };
 
-const getAPIData = async () => {
+const getAPIData = async (options) => {
   const service = google.youtube('v3');
-  const res = await service.subscriptions.list({
-    mine: true,
-    part: 'snippet',
-  });
+  const res = await service.subscriptions.list(options);
   return res;
 };
 
-export { authorizeURL, setToken, getAPIData };
+const getRefreshToken = () => refreshToken;
+
+export { authorizeURL, oauth2Client, setToken, getAPIData, getRefreshToken };
