@@ -1,5 +1,5 @@
 import { ash } from '../util';
-import { getAPIData } from '../services/youtube-api';
+import { getAPIData, oauth2Client } from '../services/youtube-api';
 
 const renderMain = ash(async (req, res) => {
   try {
