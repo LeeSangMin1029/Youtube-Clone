@@ -1,6 +1,5 @@
 import { ash } from '../util';
-import { setToken } from '../services/youtube-api';
-import { authorizeURL } from '../services/youtube-api';
+import { setToken, authorizeURL } from '../services/youtube-api';
 
 const authenticate = ash(async (req, res) => {
   try {
