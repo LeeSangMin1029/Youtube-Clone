@@ -6,6 +6,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import cors from 'cors';
 
 import '../config/passport';
+import { localsMiddleware } from './middlewares';
 import webpackConfig from '../../webpack.config';
 import config from '../config';
 import { joinDir } from '../util';
@@ -33,11 +34,7 @@ export default (app) => {
   app.use('/static', express.static(joinDir('public')));
   // app.use(passport.initialize());
   // app.use(passport.session());
-  app.use(function (req, res, next) {
-    res.locals.isAuthenticated = req.isAuthenticated();
-    res.locals.currentUser = req.user;
-    next();
-  });
+  app.use(localsMiddleware);
   // routes
   app.use('/', home);
   app.use('/auth', auth);
