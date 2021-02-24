@@ -1,7 +1,7 @@
 const localsMiddleware = (req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.currentUser = req.user;
-  res.locals.defaultSrc = 'static/images/';
+  res.locals.imgSrc = 'static/images/';
   next();
 };
 
