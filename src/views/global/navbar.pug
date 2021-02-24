@@ -19,7 +19,7 @@ mixin navbar()
         #buttons
           +buttonWrap("video_camera.png", "동영상 업로드", { className: "mr apd" })
           +buttonWrap("alarm.png", "동영상 알림", { className: "mr apd" })
-          +buttonWrap("user.png", "내 정보", { id:"avatar" })
+          +buttonWrap("user.png", "내 정보", { className: "apd", id:"avatar" })
       - else
         #login-container
           a#login(href="/auth/google")
