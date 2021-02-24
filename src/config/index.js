@@ -14,6 +14,7 @@ const {
   COOKIE_KEY: cookie_key = '',
   PORT: port = 3000,
   DOMAIN: domain = 'http://localhost',
+  MONGODB: mongod_db = '',
 } = process.env;
 
 export default {
@@ -24,6 +25,7 @@ export default {
     'src\\config',
     'src'
   ),
+  mongod_db,
   youtube_api_key,
   client_id,
   client_secret,

@@ -1,5 +1,5 @@
+// import passport from 'passport';
 import express from 'express';
-import passport from 'passport';
 import cookieSession from 'cookie-session';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -31,8 +31,8 @@ export default (app) => {
     })
   );
   app.use('/static', express.static(joinDir('public')));
-  app.use(passport.initialize());
-  app.use(passport.session());
+  // app.use(passport.initialize());
+  // app.use(passport.session());
   app.use(function (req, res, next) {
     res.locals.isAuthenticated = req.isAuthenticated();
     res.locals.currentUser = req.user;

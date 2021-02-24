@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import passport from 'passport';
+
+import * as authController from '../controller/auth-controller';
 
 const logout = (req, res) => {
   req.session = null;
@@ -9,18 +10,7 @@ const logout = (req, res) => {
 
 const route = Router();
 route.get('/logout', logout);
-route.get(
-  '/google',
-  passport.authenticate('google', {
-    scope: ['profile', 'email'],
-  })
-);
-route.get(
-  '/google/callback',
-  passport.authenticate('google', { failureRedirect: '/failed' }),
-  (req, res) => {
-    return res.redirect('/');
-  }
-);
+route.get('/google', authController.redirectAuthURL);
+route.get('/google/code', authController.authenticate);
 
 export default route;
