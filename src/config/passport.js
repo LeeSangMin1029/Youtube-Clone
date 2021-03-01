@@ -30,7 +30,7 @@ passport.use(
       clientSecret: config.client_secret,
       callbackURL: `${config.base}/auth/google/access`,
     },
-    async function (access_token, refresh_token, profile, done) {
+    async function (_, refresh_token, profile, done) {
       const {
         _json: { sub: google_id, name, picture: image_url, email, locale },
       } = profile;
@@ -42,7 +42,7 @@ passport.use(
             name,
             email,
             image_url,
-            locale: locale,
+            locale,
           });
           await Token.create({
             refresh_token,
