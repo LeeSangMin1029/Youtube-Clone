@@ -9,8 +9,13 @@ const logout = (req, res) => {
 };
 
 const route = Router();
+route.get('/failed', authController.failed);
 route.get('/logout', logout);
-route.get('/google', authController.redirectAuthURL);
-route.get('/google/code', authController.authenticate);
+route.get('/google', authController.passScope);
+route.get(
+  '/google/access',
+  authController.passFailed,
+  authController.redirectHome
+);
 
 export default route;
