@@ -1,4 +1,4 @@
-import { getService, oauth2Client } from './google';
+import { getService } from './google';
 
 const service = await getService('youtube', 'v3');
 /**
@@ -9,7 +9,7 @@ const subscriptionHandler = () => {
   return {
     list: async (options) => {
       try {
-        return await sub.list({ auth: oauth2Client, ...options });
+        return await sub.list(options);
       } catch (err) {
         console.error(err);
       }
