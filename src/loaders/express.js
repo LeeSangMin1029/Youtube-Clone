@@ -1,4 +1,4 @@
-// import passport from 'passport';
+import passport from 'passport';
 import express from 'express';
 import cookieSession from 'cookie-session';
 import webpack from 'webpack';
@@ -32,8 +32,8 @@ export default (app) => {
     })
   );
   app.use('/static', express.static(joinDir('public')));
-  // app.use(passport.initialize());
-  // app.use(passport.session());
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(localsMiddleware);
   // routes
   app.use('/', home);

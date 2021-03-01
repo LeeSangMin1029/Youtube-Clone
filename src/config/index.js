@@ -16,11 +16,13 @@ const {
   DOMAIN: domain = 'http://localhost',
   MONGODB: mongod_db = '',
 } = process.env;
+const base = `${domain}:${port}`;
+const callback_url = `${base}/auth/google/access`;
 
 export default {
   domain,
   port: parseInt(port, 10),
-  base: `${domain}:${port}`,
+  base,
   __dirname: dirname(fileURLToPath(import.meta.url)).replace(
     'src\\config',
     'src'
@@ -29,5 +31,6 @@ export default {
   youtube_api_key,
   client_id,
   client_secret,
+  callback_url,
   cookie_key,
 };

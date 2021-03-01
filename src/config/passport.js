@@ -2,13 +2,26 @@ import passport from 'passport';
 import OAuth2Strategy from 'passport-google-oauth20';
 
 import config from './index';
+import { setAuthCredentials } from '../services';
+import User from '../models/User';
+import Token from '../models/Token';
 
 passport.serializeUser(function (user, done) {
-  done(null, user);
+  done(null, user._id);
 });
 
-passport.deserializeUser(function (user, done) {
-  done(null, user);
+passport.deserializeUser(async function (_id, done) {
+  try {
+    const user = await User.findOne({ _id })
+      .select({
+        _id: -1,
+        google_id: -1,
+      })
+      .lean();
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
 });
 
 passport.use(
@@ -16,10 +29,39 @@ passport.use(
     {
       clientID: config.client_id,
       clientSecret: config.client_secret,
-      callbackURL: `${config.base}/auth/google/callback`,
+      callbackURL: config.callback_url,
     },
-    function (_, __, profile, done) {
-      return done(null, profile);
+    async function (_, refresh_token, params, profile, done) {
+      const {
+        _json: { sub: google_id, name, picture: image_url, email, locale },
+      } = profile;
+      try {
+        const user = await User.findOne({ google_id }).lean();
+        if (!user) {
+          const newUser = await User.create({
+            google_id,
+            name,
+            email,
+            image_url,
+            locale,
+          });
+          await Token.create({
+            refresh_token,
+            owner: newUser._id,
+          });
+          return done(null, newUser);
+        }
+        const token = await Token.findOne({ owner: user._id })
+          .select({ refresh_token: 1 })
+          .lean();
+        if (!token) {
+          await Token.create({ refresh_token, owner: user._id });
+        }
+        setAuthCredentials(params);
+        return done(null, user);
+      } catch (err) {
+        throw new Error(err);
+      }
     }
   )
 );

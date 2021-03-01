@@ -9,6 +9,7 @@ const startServer = async () => {
     await mongoose.connect(config.mongod_db, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     });
     console.log('Mongodb connected!');
     const app = express();
