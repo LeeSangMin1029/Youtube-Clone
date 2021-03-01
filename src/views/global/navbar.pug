@@ -4,7 +4,7 @@ mixin navbar()
   #navbar
     #left
       #menu
-        +buttonWrap("header_menu.png", "메뉴 버튼", { className: "mr apd" })
+        +buttonWrap(`${imgSrc}header_menu.png`, "메뉴 버튼", { className: "mr apd" })
       #logo-container
         a#logo(href="/" title="JJabtube 홈")
           +imgWrap(`${imgSrc}youtube_logo.svg`, '짭튜브 로고', 80, 24)
