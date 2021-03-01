@@ -2,6 +2,7 @@ import passport from 'passport';
 import OAuth2Strategy from 'passport-google-oauth20';
 
 import config from './index';
+import { setAuthCredentials } from '../services';
 import User from '../models/User';
 import Token from '../models/Token';
 
@@ -28,9 +29,9 @@ passport.use(
     {
       clientID: config.client_id,
       clientSecret: config.client_secret,
-      callbackURL: `${config.base}/auth/google/access`,
+      callbackURL: config.callback_url,
     },
-    async function (_, refresh_token, profile, done) {
+    async function (_, refresh_token, params, profile, done) {
       const {
         _json: { sub: google_id, name, picture: image_url, email, locale },
       } = profile;
@@ -56,6 +57,7 @@ passport.use(
         if (!token) {
           await Token.create({ refresh_token, owner: user._id });
         }
+        setAuthCredentials(params);
         return done(null, user);
       } catch (err) {
         throw new Error(err);
