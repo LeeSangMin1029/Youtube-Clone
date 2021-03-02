@@ -8,6 +8,13 @@ const oauth2Client = new google.auth.OAuth2(
   config.callbackURL
 );
 
+const scope =
+  'profile email\
+      https://www.googleapis.com/auth/youtube\
+      https://www.googleapis.com/auth/youtube.force-ssl\
+      https://www.googleapis.com/auth/youtube.readonly\
+      https://www.googleapis.com/auth/youtubepartner';
+
 const usingAPIs = ['youtube'];
 
 google.options({
@@ -60,4 +67,4 @@ const getService = async (googleAPI = '', version = '') => {
   }
 };
 
-export { setAuthCredentials, getService, oauth2Client };
+export { setAuthCredentials, getService, scope, oauth2Client };
