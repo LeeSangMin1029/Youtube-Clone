@@ -3,11 +3,7 @@ import passport from 'passport';
 import { ash } from '../util';
 
 const redirectHome = ash(async (_, res) => {
-  try {
-    return res.redirect('/');
-  } catch (err) {
-    throw new Error(err);
-  }
+  return res.redirect('/');
 });
 
 const failed = ash(async (req, res) => {
