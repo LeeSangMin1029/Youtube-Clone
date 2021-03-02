@@ -2,7 +2,6 @@ import passport from 'passport';
 import OAuth2Strategy from 'passport-google-oauth20';
 
 import config from './index';
-import { setAuthCredentials } from '../services';
 import User from '../models/User';
 import Token from '../models/Token';
 
@@ -57,7 +56,7 @@ passport.use(
         if (!token) {
           await Token.create({ refresh_token, owner: user._id });
         }
-        setAuthCredentials(params);
+        user.token = params;
         return done(null, user);
       } catch (err) {
         throw new Error(err);
