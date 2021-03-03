@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 import config from '../config';
+import { ash } from '../util';
 import { setAuthCredentials } from '../services';
 
 const localsMiddleware = (req, res, next) => {
@@ -16,26 +17,37 @@ const createToken = (req, res, next) => {
     expiresIn: token.expires_in,
   });
   res.cookie('jwt_token', jwtToken);
-  next();
+  return next();
 };
 
-const verifyToken = (req, res, next) => {
+const decodeToken = async (token) => {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, config.jwt_secret_key, (err, decoded) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(decoded);
+    });
+  });
+};
+
+const verifyToken = ash(async (req, res, next) => {
+  if (req.cookies.jwt_token === undefined) {
+    return next();
+  }
+  const clientToken = req.cookies.jwt_token;
   try {
-    if (req.cookies.jwt_token === undefined) {
-      return next();
-    }
-    const clientToken = req.cookies.jwt_token;
-    const decoded = jwt.verify(clientToken, config.jwt_secret_key);
+    const decoded = await decodeToken(clientToken);
     if (decoded !== undefined) {
       res.token = decoded.token;
       return next();
     } else {
-      res.status(401).json({ error: 'unauthorized' });
+      return res.status(401).json({ error: 'unauthorized' });
     }
   } catch (err) {
-    res.status(401).json({ error: 'token expired' });
+    return res.redirect('/auth/google');
   }
-};
+});
 
 const credentials = (_, res, next) => {
   if (res.token === undefined) {
