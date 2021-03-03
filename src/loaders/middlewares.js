@@ -21,11 +21,14 @@ const createToken = (req, res, next) => {
 
 const verifyToken = (req, res, next) => {
   try {
+    if (req.cookies.jwt_token === undefined) {
+      return next();
+    }
     const clientToken = req.cookies.jwt_token;
     const decoded = jwt.verify(clientToken, config.jwt_secret_key);
     if (decoded !== undefined) {
       res.token = decoded.token;
-      next();
+      return next();
     } else {
       res.status(401).json({ error: 'unauthorized' });
     }
@@ -35,9 +38,11 @@ const verifyToken = (req, res, next) => {
 };
 
 const credentials = (_, res, next) => {
-  console.log(res.token);
+  if (res.token === undefined) {
+    return next();
+  }
   setAuthCredentials(res.token);
-  next();
+  return next();
 };
 
 export { localsMiddleware, createToken, verifyToken, credentials };
