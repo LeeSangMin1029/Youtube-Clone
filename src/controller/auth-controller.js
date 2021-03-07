@@ -1,7 +1,7 @@
 import passport from 'passport';
-import { scope } from '../services/google';
 
 import { ash } from '../util';
+import { googleService } from '../services';
 
 const redirectHome = ash(async (_, res) => {
   return res.redirect('/');
@@ -15,7 +15,7 @@ const failed = ash(async (_, res) => {
 
 const passScope = passport.authenticate('google', {
   accessType: 'offline',
-  scope,
+  scope: googleService.scope,
 });
 
 const passFailed = passport.authenticate('google', {
