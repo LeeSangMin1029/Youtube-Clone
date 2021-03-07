@@ -1,14 +1,28 @@
 import { ash } from '../util';
-import { subscriptionHandler } from '../services';
+import { youtubeService } from '../services';
 
-const handler = subscriptionHandler();
+const handler = youtubeService.subscriptionHandler();
 const renderMain = ash(async (req, res) => {
   if (req.user) {
-    const data = await handler.list({
+    const { data } = await handler.list({
       part: 'snippet',
       mine: true,
     });
-    console.log(data);
+    const subscribedItems = data.items.map((item) => {
+      const {
+        resourceId: { channelId },
+        thumbnails,
+        title,
+      } = item.snippet;
+      return {
+        imgSrc: thumbnails.medium.url,
+        string: title,
+        href: channelId,
+      };
+    });
+    return res.render('home/main', {
+      subscribedItems,
+    });
   }
   return res.render('home/main');
 });
