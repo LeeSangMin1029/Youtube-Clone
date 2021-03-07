@@ -2,9 +2,7 @@ import passport from 'passport';
 import OAuth2Strategy from 'passport-google-oauth20';
 
 import config from './index';
-import { setAuthCredentials } from '../services';
-import User from '../models/User';
-import Token from '../models/Token';
+import { userService } from '../services';
 
 passport.serializeUser(function (user, done) {
   done(null, user._id);
@@ -12,12 +10,7 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(async function (_id, done) {
   try {
-    const user = await User.findOne({ _id })
-      .select({
-        _id: -1,
-        google_id: -1,
-      })
-      .lean();
+    const user = await userService.findUser({ _id });
     done(null, user);
   } catch (err) {
     done(err, null);
@@ -36,28 +29,32 @@ passport.use(
         _json: { sub: google_id, name, picture: image_url, email, locale },
       } = profile;
       try {
-        const user = await User.findOne({ google_id }).lean();
+        const user = await userService.findUser({ google_id });
         if (!user) {
-          const newUser = await User.create({
+          const newUser = await userService.createUser({
             google_id,
             name,
             email,
             image_url,
             locale,
           });
-          await Token.create({
+          await userService.createToken({
             refresh_token,
             owner: newUser._id,
+            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
           });
           return done(null, newUser);
         }
-        const token = await Token.findOne({ owner: user._id })
-          .select({ refresh_token: 1 })
-          .lean();
+
+        const token = await userService.findToken({ owner: user._id });
         if (!token) {
-          await Token.create({ refresh_token, owner: user._id });
+          await userService.createToken({
+            refresh_token,
+            owner: user._id,
+            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          });
         }
-        setAuthCredentials(params);
+        user.token = params;
         return done(null, user);
       } catch (err) {
         throw new Error(err);

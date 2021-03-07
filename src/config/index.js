@@ -15,6 +15,7 @@ const {
   PORT: port = 3000,
   DOMAIN: domain = 'http://localhost',
   MONGODB: mongod_db = '',
+  JWT_SECRET_KEY: jwt_secret_key = '',
 } = process.env;
 const base = `${domain}:${port}`;
 const callback_url = `${base}/auth/google/access`;
@@ -33,4 +34,5 @@ export default {
   client_secret,
   callback_url,
   cookie_key,
+  jwt_secret_key,
 };

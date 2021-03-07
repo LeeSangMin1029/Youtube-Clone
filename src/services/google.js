@@ -8,6 +8,13 @@ const oauth2Client = new google.auth.OAuth2(
   config.callbackURL
 );
 
+const scope =
+  'profile email\
+      https://www.googleapis.com/auth/youtube\
+      https://www.googleapis.com/auth/youtube.force-ssl\
+      https://www.googleapis.com/auth/youtube.readonly\
+      https://www.googleapis.com/auth/youtubepartner';
+
 const usingAPIs = ['youtube'];
 
 google.options({
@@ -16,16 +23,24 @@ google.options({
 
 /**
  * Sets the auth credentials.
- * @param {string} token Token for credentials.
+ * @param {object} token Token for credentials.
  */
-const setAuthCredentials = (token) => {
+const setAuthCredentials = (token = {}) => {
   oauth2Client.credentials = token;
+  oauth2Client.getAccessToken((err, token) => {
+    if (err) {
+      console.error(err);
+    }
+    console.log(token);
+  });
+  google.options({ auth: oauth2Client });
 };
 
 /**
  * Check for API supported by Google.
  * @param {string} googleAPI Google's API name.
  * @param {string} version Google's API version.
+ * @returns valid and service returns
  */
 const checkAPI = (googleAPI = '', version = '') => {
   const supportedAPIs = google.getSupportedAPIs();
@@ -60,4 +75,4 @@ const getService = async (googleAPI = '', version = '') => {
   }
 };
 
-export { setAuthCredentials, getService, oauth2Client };
+export { setAuthCredentials, getService, scope, oauth2Client };

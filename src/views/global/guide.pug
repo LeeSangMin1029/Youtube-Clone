@@ -4,19 +4,21 @@ mixin guideMenu()
   nav#guide-menu()&attributes({'opened': ''})
     +guideSection(
       [
-        {href:'/',  string: '홈', imgSrc:`${imgSrc}home.svg`},
-        {href:'/trend', string:'인기', imgSrc:`${imgSrc}trend.svg`},
-        {href:'/subscription', string:'구독', imgSrc:`${imgSrc}subscription.svg`}
+        {href:'/',  string: '홈', imgSrc:`${imgSrc}home.svg`, width: 18, height: 18},
+        {href:'/trend', string:'인기', imgSrc:`${imgSrc}trend.svg`, width: 18, height: 18},
+        {href:'/subscription', string:'구독', imgSrc:`${imgSrc}subscription.svg`, width: 18, height: 18}
       ]
     )
     +guideSection(
       [
-        {href:'/library', string:'보관함', imgSrc: `${imgSrc}library.svg`},
-        {href:'/history', string:'시청 기록', imgSrc: `${imgSrc}view-record.svg`},
-        {href:'/studio', string:'내 동영상', imgSrc: `${imgSrc}personal.svg`},
-        {href:'/playlist', string:'나중에 볼 동영상', imgSrc:`${imgSrc}watch-later.svg`}
+        {href:'/library', string:'보관함', imgSrc: `${imgSrc}library.svg`, width: 18, height: 18},
+        {href:'/history', string:'시청 기록', imgSrc: `${imgSrc}view-record.svg`, width: 18, height: 18},
+        {href:'/studio', string:'내 동영상', imgSrc: `${imgSrc}personal.svg`, width: 18, height: 18},
+        {href:'/playlist', string:'나중에 볼 동영상', imgSrc:`${imgSrc}watch-later.svg`, width: 18, height: 18}
       ]
     )
+    - if(subscribedItems)
+      +guideSection(subscribedItems)
     div#footer
       p 
         | © 2021 Home
@@ -30,9 +32,9 @@ mixin guideMenu()
 mixin guideSection(arr)
   #guide-section
     each obj in arr
-      +anchorItem(obj.href, obj.string, obj.imgSrc)
+      +anchorItem(obj.href, obj.string, obj.imgSrc, obj.width, obj.height)
 
-mixin anchorItem(href, string, imgSrc)
+mixin anchorItem(href, string, imgSrc, width, height)
   a.guide-item.endpoint(href=href title=string)
-    +imgWrap(imgSrc, string, 18, 18)
+    +imgWrap(imgSrc, string, width, height)
     .title= string

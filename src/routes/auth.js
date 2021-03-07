@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import * as authController from '../controller/auth-controller';
+import { createToken } from '../loaders/middlewares';
 
 const logout = (req, res) => {
   req.session = null;
@@ -15,7 +16,10 @@ route.get('/google', authController.passScope);
 route.get(
   '/google/access',
   authController.passFailed,
-  authController.redirectHome
+  createToken,
+  (_, res) => {
+    return res.redirect('/');
+  }
 );
 
 export default route;

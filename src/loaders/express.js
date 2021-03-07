@@ -1,6 +1,7 @@
 import passport from 'passport';
 import express from 'express';
 import cookieSession from 'cookie-session';
+import cookies from 'cookie-parser';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import cors from 'cors';
@@ -25,6 +26,7 @@ export default (app) => {
   );
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(cookies());
   app.use(
     cookieSession({
       name: 'default-session',
