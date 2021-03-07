@@ -17,7 +17,9 @@ route.get(
   '/google/access',
   authController.passFailed,
   createToken,
-  authController.redirectHome
+  (_, res) => {
+    return res.redirect('/');
+  }
 );
 
 export default route;
