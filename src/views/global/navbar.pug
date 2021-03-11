@@ -19,13 +19,13 @@ mixin navbar()
         #buttons
           +buttonWrap(`${imgSrc}video_camera.png`, "동영상 업로드", { className: "mr apd" })
           +buttonWrap(`${imgSrc}alarm.png`, "동영상 알림", { className: "mr apd" })
-          +buttonWrap(`${imgSrc}user.png`, "내 정보", { className: "apd", id:"avatar" })
+          +buttonWrap(currentUser.image_url, "내 정보", { className: "apd", id:"avatar" }, 32, 32)
       - else
         #login-container
           a#login(href="/auth/google")
             +imgWrap(`${imgSrc}non-user.svg`, "로그인")
             p 로그인
 
-mixin buttonWrap(imgSrc, alt, { className, id }={})
+mixin buttonWrap(imgSrc, alt, { className, id }={}, width, height)
   button.button-icon(id=id class=className)&attributes(attributes)
-    +imgWrap(imgSrc, alt)
+    +imgWrap(imgSrc, alt, width, height)
