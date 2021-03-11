@@ -17,10 +17,6 @@ const scope =
 
 const usingAPIs = ['youtube'];
 
-google.options({
-  auth: oauth2Client,
-});
-
 /**
  * Sets the auth credentials.
  * @param {object} token Token for credentials.

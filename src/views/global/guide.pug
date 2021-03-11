@@ -18,7 +18,7 @@ mixin guideMenu()
       ]
     )
     - if(subscribedItems)
-      +guideSection(subscribedItems)
+      +guideSection(subscribedItems)(class="img-style")
     div#footer
       p 
         | © 2021 Home
@@ -32,9 +32,9 @@ mixin guideMenu()
 mixin guideSection(arr)
   #guide-section
     each obj in arr
-      +anchorItem(obj.href, obj.string, obj.imgSrc, obj.width, obj.height)
+      +anchorItem(obj.href, obj.string, obj.imgSrc, obj.width, obj.height)&attributes(attributes)
 
 mixin anchorItem(href, string, imgSrc, width, height)
   a.guide-item.endpoint(href=href title=string)
-    +imgWrap(imgSrc, string, width, height)
+    +imgWrap(imgSrc, string, width, height)&attributes(attributes)
     .title= string
