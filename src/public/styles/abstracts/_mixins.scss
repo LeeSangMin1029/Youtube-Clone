@@ -11,6 +11,10 @@
   box-sizing: border-box;
 }
 
+@mixin img-style() {
+  border-radius: 50%;
+}
+
 @mixin keyframe($name) {
   @keyframes #{$name} {
     0% {

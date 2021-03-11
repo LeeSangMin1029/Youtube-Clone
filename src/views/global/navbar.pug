@@ -4,7 +4,7 @@ mixin navbar()
   #navbar
     #left
       #menu
-        +buttonWrap(`${imgSrc}header_menu.png`, "메뉴 버튼", { className: "mr apd" })
+        +buttonWrap(`${imgSrc}header_menu.png`, "메뉴 버튼")(class="mr apd")
       #logo-container
         a#logo(href="/" title="JJabtube 홈")
           +imgWrap(`${imgSrc}youtube_logo.svg`, '짭튜브 로고', 80, 24)
@@ -17,15 +17,19 @@ mixin navbar()
     #right
       - if(isAuthenticated)
         #buttons
-          +buttonWrap(`${imgSrc}video_camera.png`, "동영상 업로드", { className: "mr apd" })
-          +buttonWrap(`${imgSrc}alarm.png`, "동영상 알림", { className: "mr apd" })
-          +buttonWrap(currentUser.image_url, "내 정보", { className: "apd", id:"avatar" }, 32, 32)
+          +buttonWrap(`${imgSrc}video_camera.png`, "동영상 업로드")(class="mr apd")
+          +buttonWrap(`${imgSrc}alarm.png`, "동영상 알림")(class="mr apd")
+          +avatarWrap(currentUser.image_url, "내 정보")(class="img-style")
       - else
         #login-container
           a#login(href="/auth/google")
             +imgWrap(`${imgSrc}non-user.svg`, "로그인")
             p 로그인
 
-mixin buttonWrap(imgSrc, alt, { className, id }={}, width, height)
-  button.button-icon(id=id class=className)&attributes(attributes)
+mixin avatarWrap(imgSrc, alt)
+  button.button-icon.avatar
+    +imgWrap(imgSrc, alt, 32, 32)&attributes(attributes)
+
+mixin buttonWrap(imgSrc, alt, width, height)
+  button.button-icon&attributes(attributes)
     +imgWrap(imgSrc, alt, width, height)
